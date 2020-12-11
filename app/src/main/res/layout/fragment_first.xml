@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FirstFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kay.pomodoro.viewModels.PomodoroViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_remaining_time"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="12:00"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:singleSelection="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_remaining_time"
+        >
+
+
+
+        <Button
+            android:id="@+id/btn_min_25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25mins"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+        <Button
+            android:id="@+id/btn_min_50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50mins"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+        <Button
+            android:id="@+id/btn_min_90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="90mins"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spaceSmall"
+            app:layout_constraintTop_toBottomOf="@+id/toggleButton"
+            >
+
+            <Button
+                android:id="@+id/button_take_break"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/take_break"
+                android:visibility="gone"
+                android:layout_marginEnd="@dimen/spaceXsmall"
+                />
+
+            <Button
+                android:id="@+id/button_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.isAlarmOn() ? @string/stop : @string/start}"
+                android:onClick="@{()->viewModel.setAlarm()}"
+                tools:text="@string/start"
+                android:layout_marginStart="@dimen/spaceXsmall"
+                />
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <Button
+        android:id="@+id/button_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
